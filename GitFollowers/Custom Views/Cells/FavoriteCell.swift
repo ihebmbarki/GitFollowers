@@ -8,16 +8,46 @@
 import UIKit
 
 class FavoriteCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    static let reuseID = "FavoriteCell"
+    let avatarimageView = GFAvatarImageView(frame: .zero)
+    let usernameLabel = GFTitleLabel(textAlignment: .left, fontSize: 26)
+    
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configure()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    func set(favorite: Follower) {
+        usernameLabel.text = favorite.login
+        avatarimageView.downloadimage(from: favorite.avatarUrl)
+    }
+    
+    private func configure() {
+        
+        addSubview(avatarimageView)
+        addSubview(usernameLabel)
+        
+        accessoryType = .disclosureIndicator
+        let padding: CGFloat = 12
+        
+        NSLayoutConstraint.activate([
+            avatarimageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            avatarimageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),
+            avatarimageView.heightAnchor.constraint(equalToConstant: 60),
+            avatarimageView.widthAnchor.constraint(equalToConstant: 60),
+            
+            usernameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            usernameLabel.leadingAnchor.constraint(equalTo: avatarimageView.trailingAnchor, constant: 24),
+            usernameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -padding),
+            usernameLabel.heightAnchor.constraint(equalToConstant: 40)
+        ])
 
+    }
 }

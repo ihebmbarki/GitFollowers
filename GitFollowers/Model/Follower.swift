@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Follower: Codable, Hashable {
+    var login: String
+    var avatarUrl: String //Convert from snake case "avatar_url" to camel case "avatarUrl"
+}
