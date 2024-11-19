@@ -16,9 +16,3 @@ This iOS application allows users to fetch a list of followers for a specified G
 - iOS 13.0+
 - Xcode 11.0+
 - Swift 5.0+
-
-## API Used
-GitHub API for fetching followers.
-
-## Acknowledgements
-This project was developed following along with a Sean Allen course.
